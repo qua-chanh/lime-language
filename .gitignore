@@ -1,3 +1,5 @@
 .antlr/
 lime/__pycache__/
 tests/__pycache__/
+lime/
+.vscode/

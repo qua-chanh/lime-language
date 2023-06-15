@@ -1,0 +1,8 @@
+fn validate_age
+    (age Int8) -> Bool:
+        value >= 18
+    end
+
+    (age String) -> Bool:
+        Fasle
+    end

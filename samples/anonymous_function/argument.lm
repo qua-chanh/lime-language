@@ -1,0 +1,3 @@
+fn operate(arg1 Int8, arg2 Int8, operator (Int8, Int8) -> Int8) -> Int8:
+    operator(arg1, arg2)
+end

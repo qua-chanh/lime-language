@@ -1,0 +1,2 @@
+fn return_empty(age Int8) -> ():
+end

@@ -2,7 +2,6 @@ lexer grammar Lexer;
 
 KW_END: 'end';
 KW_FN: 'fn';
-KW_CASE: 'case';
 KW_COND: 'cond';
 KW_GUARD: 'guard';
 

@@ -6,55 +6,54 @@ options {
 
 module: (namedFunction)* EOF;
 
-namedFunction: KW_FN identifier functionArms;
+namedFunction: KW_FN identifier functionArms KW_END;
 
-anonymousFunction: KW_FN functionArms;
+anonymousFunction: KW_FN functionArms KW_END;
 
 functionArms: (functionArm)+;
 
 functionArm:
-	'(' (functionParameter (',' functionParameter)*)? ')' functionType? guard_clause? ':' block
-		KW_END;
+	'(' (functionParameter (',' functionParameter)*)? ')' returnType guard? ':' block;
 
 functionParameter: (identifier type | literalExpression | '_');
 
-functionType: '->' type;
+returnType: '->' type;
 
-type: atom | atom '<' atom (',' atom)* '>' | typeFunction;
+cond: KW_COND ':' (condArm)+ KW_END;
 
-typeFunction: '(' atom (',' atom)* ')' '->' atom;
+condArm: expression returnType ':' block KW_END;
 
-statement: expression;
+type: atom | typeConstructor | typeFunction;
+
+typeConstructor: atom '<' type (',' type)* '>';
+
+typeFunction: '(' (type (',' type)*)? ')' '->' type;
 
 assignExpression: identifier '=' expression;
 
-caseExpression: KW_CASE expression ':' (caseArm)+ KW_END;
-
-caseArm: (literalExpression | tupleLiteralExpression) ':' block KW_END;
-
-condExpression: KW_COND ':' (condArm)+ KW_END;
-
-condArm: expression ':' block KW_END;
-
 block: (expression)*;
 
-guard_clause: 'guard' guard_expression;
+guard: 'guard' guardExpression;
 
-guard_expression:
+guardExpression:
 	identifier
 	| identifier comparisonOperator (
 		identifier
 		| literalExpression
 	);
 
+callFunctionExpression: (identifier | anonymousFunction) '(' callFunctionParamsExpression? ')';
+
+callFunctionParamsExpression: expression (',' expression)*;
+
 expression:
 	identifier
 	| atom
 	| anonymousFunction
 	| literalExpression
-	| caseExpression
-	| condExpression
+	| cond
 	| assignExpression
+	| callFunctionExpression
 	| expression ('*' | '/' | '%') expression
 	| expression ('+' | '-') expression
 	| expression comparisonOperator expression
@@ -80,4 +79,4 @@ identifier: NON_KEYWORD_IDENTIFIER;
 
 atom: ATOM;
 
-keyword: KW_FN | KW_END | KW_CASE | KW_COND;
+keyword: KW_FN | KW_END | KW_COND;

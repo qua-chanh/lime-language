@@ -49,3 +49,15 @@ class TestAnonymousAsReturn(Base):
         self.assertEqual(
             printer.named_function_ctx.identifier().getText(), "generate_operator"
         )
+
+class TestAnonymousNoArg(Base):
+    fname = "anonymous_function/no_arg.lm"
+
+    def test_parsed(self):
+        printer = AnonymousFunctionListener()
+        walker = ParseTreeWalker()
+        walker.walk(printer, self.tree)
+
+        self.assertEqual(
+            printer.named_function_ctx.identifier().getText(), "generate_bool"
+        )

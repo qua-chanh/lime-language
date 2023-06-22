@@ -1,9 +1,11 @@
-fn generate_bool(bool String) -> () -> Bool:
+fn generate_bool(str String) -> () -> Bool:
     fn 
         ("True") -> () -> Bool:
             fn () -> Bool: True end
+        end
 
         ("False") -> () -> Bool:
             fn () -> Bool: False end
-    end(bool)
+        end
+    .(str)
 end

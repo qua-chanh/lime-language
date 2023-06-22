@@ -1,0 +1,5 @@
+fn validate_age (age Int8) -> Bool:
+    cond
+        age >= 18: True end
+        True: False end
+end

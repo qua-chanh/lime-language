@@ -1,0 +1,7 @@
+fn validate_age(age Int8) -> Bool:
+    validate_min_age(age)
+end
+
+fn validate_min_age(age Int8) -> Bool:
+    age >= 18
+end

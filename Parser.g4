@@ -6,20 +6,20 @@ options {
 
 module: (namedFunction)* EOF;
 
-namedFunction: KW_FN identifier functionArms KW_END;
+namedFunction: KW_FN identifier functionArms;
 
-anonymousFunction: KW_FN functionArms KW_END;
+anonymousFunction: KW_FN functionArms;
 
 functionArms: (functionArm)+;
 
 functionArm:
-	'(' (functionParameter (',' functionParameter)*)? ')' returnType guard? ':' block;
+	'(' (functionParameter (',' functionParameter)*)? ')' returnType guard? ':' block KW_END;
 
 functionParameter: (identifier type | literalExpression | '_');
 
 returnType: '->' type;
 
-cond: KW_COND ':' (condArm)+ KW_END;
+cond: KW_COND (condArm)+;
 
 condArm: expression returnType ':' block KW_END;
 

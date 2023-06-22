@@ -4,4 +4,8 @@ fn validate_age(ages Int8) -> Bool:
     end
 
     f(ages)
+
+    a = (ags)
+
+    f.a
 end

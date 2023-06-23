@@ -48,7 +48,8 @@ DOT: '.';
 COMMA: ',';
 COLON: ':';
 PIPE: '|>';
-ARROW: '->';
+RIGHT_ARROW: '->';
+LEFT_ARROW: '<-';
 
 LCURLYBRACE: '{';
 RCURLYBRACE: '}';

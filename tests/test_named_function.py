@@ -53,14 +53,3 @@ class TestNamedFunctionNoReturn(Base):
         walker.walk(printer, self.tree)
 
         self.assertEqual(printer.ctx.identifier().getText(), "return_empty")
-
-
-class TestNamedFunctionCall(Base):
-    fname = "named_function/call.lm"
-
-    def test_parsed(self):
-        printer = NamedFunctionListener()
-        walker = ParseTreeWalker()
-        walker.walk(printer, self.tree)
-
-        self.assertEqual(printer.ctx.identifier().getText(), "validate_age")

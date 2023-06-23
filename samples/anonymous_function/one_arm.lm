@@ -7,5 +7,5 @@ fn validate_age(ages Int8) -> Bool:
 
     a = (ags)
 
-    f.a
+    f <- a
 end

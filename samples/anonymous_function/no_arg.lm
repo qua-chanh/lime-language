@@ -7,5 +7,5 @@ fn generate_bool(str String) -> () -> Bool:
         ("False") -> () -> Bool:
             fn () -> Bool: False end
         end
-    .(str)
+    <- (str)
 end

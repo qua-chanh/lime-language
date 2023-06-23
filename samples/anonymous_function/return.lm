@@ -11,5 +11,5 @@ fn generate_operator(operator String) -> (Int8, Int8) -> Int8:
         ("*") -> (Int8, Int8) -> Int8:
             fn (arg1 Int8, arg2 Int8) -> Int8: arg1 * arg2 end
         end
-    .(operator)
+    <- (operator)
 end

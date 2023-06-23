@@ -42,9 +42,14 @@ guardExpression:
 		| literalExpression
 	);
 
-callFunctionExpression: (identifier | anonymousFunction) '(' callFunctionParamsExpression? ')';
+callFunctionExpression:
+	identifier callFunctionParams
+	| (anonymousFunction | cond | identifier) '<-' (
+		callFunctionParams
+		| identifier
+	);
 
-callFunctionParamsExpression: expression (',' expression)*;
+callFunctionParams: '(' (expression (',' expression)*)? ')';
 
 expression:
 	identifier

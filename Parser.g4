@@ -4,7 +4,12 @@ options {
 	tokenVocab = Lexer;
 }
 
-module: (namedFunction)* EOF;
+module: (statement)* EOF;
+
+statement: namedFunction | struct;
+
+struct:
+	KW_STRUCT atom '(' identifierType (',' identifierType)* ')';
 
 namedFunction: KW_FN identifier functionArms;
 
@@ -15,7 +20,11 @@ functionArms: (functionArm)+;
 functionArm:
 	'(' (functionParameter (',' functionParameter)*)? ')' returnType guard? ':' block KW_END;
 
-functionParameter: (identifier type | literalExpression | '_');
+functionParameter: (identifierType | literalExpression | '_');
+
+identifierType: identifier type (defaultValue)?;
+
+defaultValue: '=' literalExpression;
 
 returnType: '->' type;
 
@@ -23,11 +32,13 @@ cond: KW_COND (condArm)+;
 
 condArm: expression returnType ':' block KW_END;
 
-type: atom | typeConstructor | typeFunction;
+type: atom | typeConstructor | typeFunction | typeVoid;
 
 typeConstructor: atom '<' type (',' type)* '>';
 
 typeFunction: '(' (type (',' type)*)? ')' '->' type;
+
+typeVoid: '(' ')';
 
 assignExpression: identifier '=' expression;
 
@@ -84,4 +95,4 @@ identifier: NON_KEYWORD_IDENTIFIER;
 
 atom: ATOM;
 
-keyword: KW_FN | KW_END | KW_COND;
+keyword: KW_FN | KW_END | KW_COND | KW_GUARD | KW_STRUCT;

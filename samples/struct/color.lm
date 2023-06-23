@@ -1,0 +1,1 @@
+struct Color(red Int8 = 0, green Int8 = 0, blue Int8 = 0)

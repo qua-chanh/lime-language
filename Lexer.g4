@@ -4,6 +4,7 @@ KW_END: 'end';
 KW_FN: 'fn';
 KW_COND: 'cond';
 KW_GUARD: 'guard';
+KW_STRUCT: 'struct';
 
 LINE_COMMENT: '//' ~[\r\n]* -> channel(HIDDEN);
 BLOCK_COMMENT: '/*' .*? '*/' -> channel(HIDDEN);

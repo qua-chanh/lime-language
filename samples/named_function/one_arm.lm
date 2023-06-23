@@ -1,3 +1,3 @@
-fn validate_age(age Int8) -> Bool:
+fn validate_age(age Int8 = 18) -> Bool:
     age >= 18
 end

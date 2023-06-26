@@ -6,10 +6,12 @@ options {
 
 module: (statement)* EOF;
 
-statement: namedFunction | struct;
+statement: namedFunction | struct | enumStatement;
 
 struct:
 	KW_STRUCT atom '(' identifierType (',' identifierType)* ')';
+
+enumStatement: KW_ENUM atom '(' atom (',' atom)* ')';
 
 namedFunction: KW_FN identifier functionArms;
 
@@ -95,4 +97,10 @@ identifier: NON_KEYWORD_IDENTIFIER;
 
 atom: ATOM;
 
-keyword: KW_FN | KW_END | KW_COND | KW_GUARD | KW_STRUCT;
+keyword:
+	KW_FN
+	| KW_END
+	| KW_COND
+	| KW_GUARD
+	| KW_STRUCT
+	| KW_ENUM;

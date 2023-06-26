@@ -5,6 +5,7 @@ KW_FN: 'fn';
 KW_COND: 'cond';
 KW_GUARD: 'guard';
 KW_STRUCT: 'struct';
+KW_ENUM: 'enum';
 
 LINE_COMMENT: '//' ~[\r\n]* -> channel(HIDDEN);
 BLOCK_COMMENT: '/*' .*? '*/' -> channel(HIDDEN);
